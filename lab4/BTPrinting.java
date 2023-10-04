@@ -67,7 +67,7 @@ public class BTPrinting extends BinaryTree {
      *       / \ / \
      *      4  5 6  7
      */
-//		@Override
+	@Override
 	public void testing() {
 		BinaryTree tree = new BinaryTree();       
 
