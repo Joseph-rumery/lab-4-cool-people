@@ -1,7 +1,7 @@
-
+package lab4
 public class BTPrinting extends BinaryTree {
 	
-	public void preOrder(Node<Integer> node) {
+	public void preOrder(Node node) {
 		if (node==null)
 			return;
 		System.out.println(node.data);
@@ -20,7 +20,7 @@ public class BTPrinting extends BinaryTree {
 		leftNodePrint(node.left);
 	}
 	
-	private void leftNodePrint(Node<Integer> node) {
+	private void leftNodePrint(Node node) {
 		printLeft(node);
 	}
 }
