@@ -1,1 +1,35 @@
 
+public static void main(String[] args) {
+
+        // Sample tree construction
+        tree.root = tree.new Node();
+        tree.root.data = 50;
+
+        tree.root.left = tree.new Node();
+        tree.root.left.data = 30;
+
+        tree.root.right = tree.new Node();
+        tree.root.right.data = 70;
+
+        tree.root.left.left = tree.new Node();
+        tree.root.left.left.data = 20;
+
+        tree.root.left.right = tree.new Node();
+        tree.root.left.right.data = 40;
+
+        tree.root.right.left = tree.new Node();
+        tree.root.right.left.data = 60;
+
+        tree.root.right.right = tree.new Node();
+        tree.root.right.right.data = 80;
+
+        int item = 55;
+        int sumLessThanResult = tree.sumLessThan(item);
+        int findMaxResult = tree.findMax();
+
+        System.out.println("Sum of values less than " + item + ": " + sumLessThanResult);
+        System.out.println("Maximum number in the tree: " + findMaxResult);
+
+        testing();
+
+}
