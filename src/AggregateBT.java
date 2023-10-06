@@ -1,3 +1,5 @@
+package lab4;
+
 public class AggregateBT extends BinaryTree {
 
     public AggregateBT() {
