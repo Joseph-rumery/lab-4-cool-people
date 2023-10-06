@@ -76,6 +76,10 @@ public class searchBT extends BinaryTree {
 		return -1;
 	}
 
+	/**
+	 * searchTest method for testing contains and getLevel methods, creates a new
+	 * binary tree used to show utilization of methods.
+	 */
 	public void searchTest() {
 		searchBT tree = new searchBT();
 
