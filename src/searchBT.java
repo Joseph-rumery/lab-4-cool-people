@@ -1,9 +1,3 @@
-package lab4;
-
-import tester.BinaryTree;
-import tester.E;
-import tester.Node;
-
 /**
  * searchBT encompasses contains() and getLevel methods()
  * 
@@ -35,7 +29,7 @@ public class searchBT extends BinaryTree {
 	 * @param item the key item being search for
 	 * @return boolean, true if the item is in the tree else false
 	 */
-	private boolean contains(Node<E> node, int item) {
+	private boolean contains(Node node, int item) {
 		if (node == null) {
 			return false;
 		}
@@ -53,20 +47,51 @@ public class searchBT extends BinaryTree {
 	 * @param item the key item being search for
 	 * @return int, the level of the key item in the binaryTree
 	 */
+
 	public int getLevel(int item) {
-		return getLevel(root, item);
+		return getLevel(root, item, 0); // Start with level 0 for the root node
 	}
 
-	private int getLevel(Node<E> node, int item) {
-		int level = 0;
+	/**
+	 * Private recursive method to find the level of the key item
+	 * 
+	 * @param node  the current node being examined
+	 * @param item  the key item being searched for
+	 * @param level the current level in the tree
+	 * @return int, the level of the key item in the binaryTree, -1 if not found
+	 */
+	private int getLevel(Node node, int item, int level) {
 		if (node == null) {
-			return -1;
+			return -1; // Item not found in the tree
 		}
-		if (getLevel(contains(node.left, item)) > getLevel(contains(node.right, item))) {
-			return node.left + 1;
-		} else
-			return node.right + 1;
 
+		if (node.data == item) {
+			return level; // Item found, return the current level
+		}
+
+		// Recursively search in the left and right subtrees, incrementing the level
+		int leftLevel = getLevel(node.left, item, level + 1);
+		int rightLevel = getLevel(node.right, item, level + 1);
+
+		// Return the maximum of leftLevel and rightLevel, or -1 if both are -1 (item
+		// not found)
+		return Math.max(leftLevel, rightLevel);
+	}
+
+	public void searchTest() {
+		BinaryTree tree = new BinaryTree();
+
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+		tree.root.right = new Node(3);
+		tree.root.left.left = new Node(4);
+		tree.root.left.right = new Node(5);
+		tree.root.right.left = new Node(6);
+		tree.root.right.right = new Node(7);
+		System.out.println("Output of contains(): ");
+		contains(tree.root, 3);
+		System.out.println("\nOutput of getLevel: ");
+		getLevel(tree.root, 2, 0);
 	}
 
 }
