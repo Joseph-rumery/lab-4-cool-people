@@ -1,3 +1,4 @@
+
 /**
  * searchBT encompasses contains() and getLevel methods()
  * 
@@ -5,10 +6,6 @@
  * @version 10/4/2023
  */
 public class searchBT extends BinaryTree {
-
-	Node root;
-	Node right;
-	Node left;
 
 	/**
 	 * contains method which searches a binaryTree for a key item and returns a
@@ -34,11 +31,11 @@ public class searchBT extends BinaryTree {
 			return false;
 		}
 
-		if (contains(node, item) || contains(node.left, item) || contains(node.right, item)) {
+		if (node.data == item) {
 			return true;
-		} else {
-			return false;
 		}
+
+		return contains(node.left, item) || contains(node.right, item);
 	}
 
 	/**
@@ -49,7 +46,7 @@ public class searchBT extends BinaryTree {
 	 */
 
 	public int getLevel(int item) {
-		return getLevel(root, item, 0); // Start with level 0 for the root node
+		return getLevel(root, item);
 	}
 
 	/**
@@ -60,38 +57,47 @@ public class searchBT extends BinaryTree {
 	 * @param level the current level in the tree
 	 * @return int, the level of the key item in the binaryTree, -1 if not found
 	 */
-	private int getLevel(Node node, int item, int level) {
+	private int getLevel(Node node, int item) {
 		if (node == null) {
-			return -1; // Item not found in the tree
+			return -1;
 		}
-
 		if (node.data == item) {
-			return level; // Item found, return the current level
+			return 0;
 		}
+		int leftLevel = getLevel(node.left, item);
+		if (leftLevel != -1) {
+			return leftLevel + 1;
+		}
+		int rightLevel = getLevel(node.right, item);
 
-		// Recursively search in the left and right subtrees, incrementing the level
-		int leftLevel = getLevel(node.left, item, level + 1);
-		int rightLevel = getLevel(node.right, item, level + 1);
-
-		// Return the maximum of leftLevel and rightLevel, or -1 if both are -1 (item
-		// not found)
-		return Math.max(leftLevel, rightLevel);
+		if (rightLevel != -1) {
+			return rightLevel + 1;
+		}
+		return -1;
 	}
 
+	/**
+	 * searchTest method for testing contains and getLevel methods, creates a new
+	 * binary tree used to show utilization of methods.
+	 */
 	public void searchTest() {
-		BinaryTree tree = new BinaryTree();
+		searchBT tree = new searchBT();
 
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
-		tree.root.right.left = new Node(6);
-		tree.root.right.right = new Node(7);
-		System.out.println("Output of contains(): ");
-		contains(tree.root, 3);
-		System.out.println("\nOutput of getLevel: ");
-		getLevel(tree.root, 2, 0);
+		tree.root = tree.new Node(1);
+		tree.root.left = tree.new Node(2);
+		tree.root.right = tree.new Node(3);
+		tree.root.left.left = tree.new Node(4);
+		tree.root.left.right = tree.new Node(5);
+		tree.root.right.left = tree.new Node(6);
+		tree.root.right.right = tree.new Node(7);
+
+		int item = 7;
+		int l = tree.getLevel(item);
+		boolean c = tree.contains(item);
+
+		System.out.println("Testing for getLevel: " + l);
+		System.out.println("Testing for contains: " + c);
+
 	}
 
 }
