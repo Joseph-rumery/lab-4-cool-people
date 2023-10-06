@@ -3,6 +3,11 @@ package lab4;
 public class BinaryTree {
 
 	Node root;
+
+		public Node() {
+			right = null;
+			left = null;
+		}
 	
  class Node{
 		
@@ -10,6 +15,10 @@ public class BinaryTree {
 		
 		Node right;
 		Node left;
+
+	 public Node(int data) {
+			this.data = data;
+		}
 		
 	}
  
@@ -39,3 +48,5 @@ public class BinaryTree {
  
  
 }
+
+
