@@ -2,10 +2,6 @@ public class BinaryTree {
 
 	Node root;
 
-		public Node() {
-			right = null;
-			left = null;
-		}
 
  class Node{
 
@@ -18,6 +14,11 @@ public class BinaryTree {
 			this.data = data;
 		}
 
+	 public Node() {
+		right = null;
+		left = null;
+		}
+	 
 	}
 
  public void preOrder() {
